@@ -1,0 +1,15 @@
+<openerp>
+	<data>
+            
+
+		<!-- Employee Qweb Report -->
+		<report 
+            id="report_emp_emp"
+            string="Employee Profile"
+            model="employe.employe"
+            name="employe_details.emp_report"
+            report_type="qweb-pdf"
+            />
+
+	</data>
+</openerp>

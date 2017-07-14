@@ -1,0 +1,56 @@
+<openerp>
+	<data>
+
+		<!-- Report template for Qweb report of Employee Profile -->
+		<template id="emp_report">
+			<t>
+				<t t-foreach="docs" t-as="e">
+					<div class="page">
+						<table style="width:100%">
+							<tr>
+								
+								<td>
+									<table style="width:100%">
+										<tr>
+											<th style="text-align:center;border:1px solid">
+												Name
+											</th>
+											
+										</tr>
+										<tr>
+											<td style="border:1px solid">
+												<t t-if="e.name">
+													<span t-field="e.name"/>
+												</t>
+											</td>
+											
+										</tr>
+										<tr>
+											
+											<th style="text-align:center;border:1px solid">
+												Gender
+											</th>
+										</tr>
+										<tr>
+											
+											<td style="border:1px solid">
+												<t t-if="e.gender">
+													<span t-field="e.gender"/>
+												</t>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+						
+						<t t-esc="x"/>
+						<t t-esc="y"/>
+						<t t-esc="time.strftime('%d-%m-%Y %H:%M:%S')"/>
+					</div>
+				</t>
+			</t>
+		</template>
+
+	</data>
+</openerp>

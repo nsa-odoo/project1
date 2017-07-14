@@ -1,0 +1,257 @@
+<odoo>
+	<data>
+		<!-- Form view of Employee -->
+		<record id="view_emp_emp_form" model="ir.ui.view">
+			<field name="name">view.emp.emp.form</field>
+			<field name="model">employe.employe</field>
+			<field name="arch" type="xml">
+				<form string="Employees">
+					<header>
+						<label string = "this is header"/>
+						<field name="state" widget="statusbar" clickable="1" statusbar_visible="applied,interviewed,joined"/>
+					</header>
+					<sheet>
+						<field name="image" widget="image" class="oe_avatar"/>
+
+						<h1>
+							<field name="name" string="Employee Name" placeholder="Employee's Name..."/>
+						</h1>
+						<group colspan = "4" col = "2" string = "basic information">
+							<field name="age"/>
+							<field name="sal"/>
+							<field name="active"/>
+							<field name="birthdate"/>
+							<field name="join_date"/>
+							<field name="sign_in_time" widget= "float_time"/>
+						</group>
+						<group colspan = "4" col = "4" string = "other info">
+							<field name="gender" widget="radio"/>
+							<field name="dept_id" options="{'no_create':1,'no_open':1}"/>
+							<field name="pwd" password= "1"/>
+							<field name="email" widget= "email"/>
+							<field name="website" widget= "url" />
+							<field name="priority" widget= "priority"/>
+							<field name="partner_id" context="{'show_address':1}" options="{'always_reload':1}" />
+							<field name="document" filename="file_name"/>
+							<field name="file_name" invisible="1"/>
+							<field name="reference"/>
+							<field name="currency_id"/>
+							<field name="currency_rate"/>
+							<field name="bonus"/>
+						</group>
+						<notebook>
+							<page string="Salary">
+								<field name="sal_ids" />
+								<group colspan="4" col="4">
+									<field name="total_gross"/>
+									<field name="total_net"/>
+									<field name="percent" widget="percentpie"/>
+								</group>
+							</page>
+							<page string="Activities">
+								<field name="activity_ids" widget="many2many_tags"/>
+							</page>
+							<page string="notes">
+								<field name="notes" widget= "html"/>
+							</page>
+							<page string="template">
+								<field name="template" act_window= "text"/>
+							</page>
+						</notebook>
+					</sheet>
+					<footer>
+						<label string = "this is footer..."/>
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<!-- Tree view of Employee -->
+		<record id="view_emp_emp_tree" model="ir.ui.view">
+			<field name="name">view.emp.emp.tree</field>
+			<field name="model">employe.employe</field>
+			<field name="arch" type="xml">
+				<tree string="Employees">
+					<field name="name"/>
+					<field name="age"/>
+					<field name="sal"/>
+					<field name="active"/>
+					<field name="birthdate"/>
+					<field name="join_date"/>
+					<field name="gender"/>
+					<field name="dept_id"/>
+					<field name="percent" widget="progressbar"/>
+
+				</tree>
+			</field>
+		</record>
+
+
+
+		<!-- Kanban view of Employees -->
+		<record id="view_emp_emp_kanban" model="ir.ui.view">
+			<field name="name">view.emp.emp.kanban</field>
+			<field name="model">employe.employe</field>
+			<field name="arch" type="xml">
+				<kanban>
+					<templates>
+						<field name="name"/>
+						<field name="email"/>
+						<field name="dept_id"/>
+						<field name="website"/>
+						<t t-name="kanban-box">
+							<table style="height:60px;width:320px">
+								<tr>
+
+									<td>
+										<a type="open">
+											<field name="name"/>
+										</a>
+										<br/>
+										<a t-att-href="'mailto:'+record.email.value">
+											<field name="email"/>
+										</a>
+										<br/>
+										
+										<field name="website"/>
+									</td>
+								</tr>
+							</table>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+
+
+		<!-- Action of Employee -->
+		<record id="act_emp_emp" model="ir.actions.act_window">
+			<field name="name">Employees</field>
+			<field name="res_model">employe.employe</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">kanban,tree,form</field>
+		</record>
+
+		<!-- Main Menus  -->
+		<menuitem id="menu_hr" name="Human Resource"/>
+		<menuitem id="menu_hr_main" name="HR" parent="menu_hr"/>
+
+		<!-- Menu of Employees -->
+		<menuitem id="menu_emp_emp" action="act_emp_emp" parent="menu_hr_main" groups="employe_details.grp_hr_emp,employe_details.grp_rpt_mngr,employe_details.grp_hr_mngr"/>
+
+
+		<!-- form view of depatment -->
+		<record id="view_emp_dept_form" model="ir.ui.view">
+			<field name="name">view.emp.dept.form</field>
+			<field name="model">emp.dept</field>
+			<field name="arch" type="xml">
+				<form string="depatment">
+					<group>
+						<field name="name"/>
+
+						<field name="code"/>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- Tree view of depatment -->
+		<record id="view_emp_dept_tree" model="ir.ui.view">
+			<field name="name">view.emp.dept.tree</field>
+			<field name="model">emp.dept</field>
+			<field name="arch" type="xml">
+				<tree string="Employees">
+					<field name="name"/>
+					<field name="code"/>
+				</tree>
+			</field>
+		</record>
+
+
+		<!-- Action of depatment -->
+		<record id="act_emp_dept" model="ir.actions.act_window">
+			<field name="name">depatment</field>
+			<field name="res_model">emp.dept</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<!-- Menu of depatment -->
+		<menuitem id="menu_emp_dept" action="act_emp_dept" parent="menu_hr_main" />
+
+
+		<!-- Form view of Salary -->
+		<record id="view_emp_sal_form" model="ir.ui.view">
+			<field name="name">view.emp.sal.form</field>
+			<field name="model">emp.sal</field>
+			<field name="arch" type="xml">
+				<form string="Salary">
+					<group>
+						<field name="month"/>
+						<field name="basic"/>
+						<field name="allowances"/>
+						<field name="deductions"/>
+						<field name="gross"/>
+						<field name="net"/>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- Tree view of Salary -->
+		<record id="view_emp_sal_tree" model="ir.ui.view">
+			<field name="name">view.emp.sal.tree</field>
+			<field name="model">emp.sal</field>
+			<field name="arch" type="xml">
+				<tree string="Salary">
+					<field name="month"/>
+					<field name="basic"/>
+					<field name="allowances"/>
+					<field name="deductions"/>
+					<field name="gross"/>
+					<field name="net"/>
+				</tree>
+			</field>
+		</record>
+
+
+		<!-- Form view of Activity -->
+		<record id="view_emp_act_form" model="ir.ui.view">
+			<field name="name">view.emp.act.form</field>
+			<field name="model">emp.activity</field>
+			<field name="arch" type="xml">
+				<form string="Activity">
+					<group>
+						<field name="name"/>
+						<field name="code"/>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<!-- Tree view of Activity -->
+		<record id="view_emp_act_tree" model="ir.ui.view">
+			<field name="name">view.emp.act.tree</field>
+			<field name="model">emp.activity</field>
+			<field name="arch" type="xml">
+				<tree string="Activity">
+					<field name="name"/>
+					<field name="code"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- Action of Activity -->
+		<record id="action_emp_act" model="ir.actions.act_window">
+			<field name="name">Activities</field>
+			<field name="res_model">emp.activity</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<!-- Menu of Activity -->
+		<menuitem id="menu_emp_act" action="action_emp_act" parent="menu_hr_main" />
+	</data>
+
+</odoo>

@@ -1,0 +1,36 @@
+<odoo>
+	<data>
+		
+		<!-- Employee Group -->
+		<record id="grp_hr_emp" model="res.groups">
+			<field name="name">HR Employe</field>
+		</record>
+
+		<!-- Reporting Manager Group -->
+		<record id="grp_rpt_mngr" model="res.groups">
+			<field name="name">Reporting Manager</field>
+		</record>
+
+		<!-- HR Manager Group -->
+		<record id="grp_hr_mngr" model="res.groups">
+			<field name="name">HR Manager</field>
+		</record>
+
+
+
+
+
+
+	</data>
+</odoo>
+
+
+
+
+
+
+
+
+
+
+
