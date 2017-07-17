@@ -1,5 +1,5 @@
 
-print "kkkkkkkkkkkkkkkkkkkkkkkkkk"
+print "===================================="
 import psycopg2
 
 con = psycopg2.connect(database='project_task',user='nirali',password='nirali',host='localhost',port='5432' )
