@@ -13,6 +13,10 @@
         'views/hr_report.xml',
         
     ],
+    
+    'demo':['demo/hr_demo.xml',
+    ],
+
     'installable': True,
     'application': True,
     'auto_install': False,

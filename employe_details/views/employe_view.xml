@@ -38,9 +38,10 @@
 							<field name="currency_id"/>
 							<field name="currency_rate"/>
 							<field name="bonus"/>
+							<field name="parent_id"/>
 						</group>
 						<notebook>
-							<page string="Salary">
+							<page string="Salary" groups="employe_details.grp_hr_mngr">
 								<field name="sal_ids" />
 								<group colspan="4" col="4">
 									<field name="total_gross"/>
@@ -100,23 +101,25 @@
 						<field name="dept_id"/>
 						<field name="website"/>
 						<t t-name="kanban-box">
-							<table style="height:60px;width:320px">
-								<tr>
+							<div t-attf-class="oe_kanban_card oe_kanban_global_click">
+								<table style="height:60px;width:320px">
+									<tr>
 
-									<td>
-										<a type="open">
-											<field name="name"/>
-										</a>
-										<br/>
-										<a t-att-href="'mailto:'+record.email.value">
-											<field name="email"/>
-										</a>
-										<br/>
-										
-										<field name="website"/>
-									</td>
-								</tr>
-							</table>
+										<td>
+											<a type="open">
+												<field name="name"/>
+											</a>
+											<br/>
+											<a t-att-href="'mailto:'+record.email.value">
+												<field name="email"/>
+											</a>
+											<br/>
+											
+											<field name="website"/>
+										</td>
+									</tr>
+								</table>
+							</div>
 						</t>
 					</templates>
 				</kanban>
@@ -139,6 +142,33 @@
 
 		<!-- Menu of Employees -->
 		<menuitem id="menu_emp_emp" action="act_emp_emp" parent="menu_hr_main" groups="employe_details.grp_hr_emp,employe_details.grp_rpt_mngr,employe_details.grp_hr_mngr"/>
+
+
+
+		<!-- Hierarchical Tree view of Employees -->
+		<record id="view_emp_emp_htree" model="ir.ui.view">
+			<field name="name">view.emp.emp.htree</field>
+			<field name="model">employe.employe</field>
+			<field name="field_parent">child_ids</field>
+			<field name="arch" type="xml">
+				<tree string="Employee Hierarchy">
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+		
+		<!-- Action of Employee Hierarchical Tree View -->
+		<record id="act_emp_emp_htree" model="ir.actions.act_window">
+			<field name="name">Employee Hierarchy</field>
+			<field name="res_model">employe.employe</field>
+			<field name="view_type">tree</field>
+			<field name="view_mode">tree</field>
+			<field name="domain">[('parent_id','=',False)]</field>
+		</record>
+		
+		<!-- Menu of Employee Hierarchy -->
+		<menuitem id="menu_emp_htree" action="act_emp_emp_htree" parent="menu_hr_main" groups="employe_details.grp_hr_emp,employe_details.grp_rpt_mngr,employe_details.grp_hr_mngr"/>
+
 
 
 		<!-- form view of depatment -->
@@ -178,7 +208,7 @@
 		</record>
 
 		<!-- Menu of depatment -->
-		<menuitem id="menu_emp_dept" action="act_emp_dept" parent="menu_hr_main" />
+		<menuitem id="menu_emp_dept" action="act_emp_dept" parent="menu_hr_main" groups="employe_details.grp_hr_mngr" />
 
 
 		<!-- Form view of Salary -->
@@ -251,7 +281,7 @@
 		</record>
 
 		<!-- Menu of Activity -->
-		<menuitem id="menu_emp_act" action="action_emp_act" parent="menu_hr_main" />
+		<menuitem id="menu_emp_act" action="action_emp_act" parent="menu_hr_main" groups="employe_details.grp_rpt_mngr,employe_details.grp_hr_mngr" />
 	</data>
 
 </odoo>

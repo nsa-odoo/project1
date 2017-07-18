@@ -1,7 +1,18 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acess_employe_hr_manager,acess.employe_hr_manager,model_employe_employe,grp_hr_mngr,1,1,1,1
-acess_employe_rpt_mngr,acess.employe_rpt_mngr,model_employe_employe,grp_rpt_mngr,1,1,0,0
-acess_employe_emp,acess.employe_emp,model_employe_employe,grp_hr_emp,1,0,0,0
+acess_employe_hr_manager,acess.employe_hr_manager,model_employe_employe,employe_details.grp_hr_mngr,1,1,1,1
+acess_employe_rpt_mngr,acess.employe_rpt_mngr,model_employe_employe,employe_details.grp_rpt_mngr,1,1,0,0
+acess_employe_emp,acess.employe_emp,model_employe_employe,employe_details.grp_hr_emp,1,0,0,0
+acess_emp_dept_hr_manager,acess.emp_dept_hr_manager,model_emp_dept,employe_details.grp_hr_mngr,1,1,1,1
+acess_emp_dept_rpt_mngr,acess.emp_dept_rpt_mngr,model_emp_dept,employe_details.grp_rpt_mngr,1,0,0,0
+acess_emp_dept_emp,acess.emp_dept_emp,model_emp_dept,employe_details.grp_hr_emp,1,0,0,0
+acess_emp_sal_hr_manager,acess.emp_sal_hr_manager,model_emp_sal,employe_details.grp_hr_mngr,1,1,1,1
+acess_emp_sal_rpt_mngr,acess.emp_sal_rpt_mngr,model_emp_sal,employe_details.grp_rpt_mngr,1,0,0,0
+acess_emp_sal_emp,acess.emp_sal_emp,model_emp_sal,employe_details.grp_hr_emp,1,0,0,0
+access_emp_activity,access.emp_activity,model_emp_activity,employe_details.grp_hr_mngr,1,1,1,1
+access_emp_activity,access.emp_activity,model_emp_activity,employe_details.grp_rpt_mngr,1,1,0,0
+access_emp_activity,access.emp_activity,model_emp_activity,employe_details.grp_hr_emp,1,0,0,0
+
+
 
 
 

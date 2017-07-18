@@ -1,21 +1,70 @@
 <odoo>
 	<data>
 		
+
+        <record model="ir.module.category" id="module_category_employe_details">
+            <field name="name">Employees Details</field>
+            <field name="description">Helps you manage your employees.</field>
+            <field name="sequence">100</field>
+        </record>
+
 		<!-- Employee Group -->
 		<record id="grp_hr_emp" model="res.groups">
 			<field name="name">HR Employe</field>
+			<field name="category_id" ref="employe_details.module_category_employe_details"/>
 		</record>
 
 		<!-- Reporting Manager Group -->
 		<record id="grp_rpt_mngr" model="res.groups">
 			<field name="name">Reporting Manager</field>
+			<field name="category_id" ref="employe_details.module_category_employe_details"/>
+			<field name="implied_ids" eval="[(4, ref('employe_details.grp_hr_emp'))]" />
 		</record>
 
 		<!-- HR Manager Group -->
 		<record id="grp_hr_mngr" model="res.groups">
 			<field name="name">HR Manager</field>
+			<field name="category_id" ref="employe_details.module_category_employe_details"/>
+			<field name="users" eval="[(4, ref('base.user_root'))]"/>
+			<field name="implied_ids" eval="[(4, ref('employe_details.grp_rpt_mngr'))]" />
 		</record>
 
+
+		<!-- Record Rule::- Employee can see Own Record -->
+        <record id="employee_own_rec" model="ir.rule">
+            <field name="name">Employee can see own data</field>
+            <field name="model_id" ref="model_employe_employe"/>
+            <field name="domain_force">[('user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('grp_hr_emp'))]"/>
+            <field name='perm_create' eval='False'/>
+            <field name='perm_read' eval='True'/>
+            <field name='perm_unlink' eval='False'/>
+            <field name='perm_write' eval='False'/>
+        </record>
+
+		<!-- Record Rule::- Reporting Manager can see Own and Subordinates Records -->
+        <record id="employee_own_team_rule1" model="ir.rule">
+            <field name="name">Employee can see own and subordinate data</field>
+            <field name="model_id" ref="model_employe_employe"/>
+            <field name="domain_force">['|',('user_id','=',user.id),('parent_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('grp_rpt_mngr'))]"/>
+            <field name='perm_create' eval='False'/>
+            <field name='perm_read' eval='True'/>
+            <field name='perm_unlink' eval='False'/>
+            <field name='perm_write' eval='True'/>
+        </record>
+
+		<!-- Record Rule::- HR Manager can see All Records -->
+        <record id="employee_all" model="ir.rule">
+            <field name="name">HR Manager can see all data</field>
+            <field name="model_id" ref="model_employe_employe"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('grp_hr_mngr'))]"/>
+            <field name='perm_create' eval='True'/>
+            <field name='perm_read' eval='True'/>
+            <field name='perm_unlink' eval='True'/>
+            <field name='perm_write' eval='True'/>
+        </record>
 
 
 

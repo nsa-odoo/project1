@@ -53,6 +53,10 @@ class emp_emp(models.Model):
     total_gross = fields.Float(compute='_calc_total_gross', string='Total Gross')
     total_net = fields.Float(compute='_calc_total_net', string='Total Net')
     percent = fields.Float(compute='_calc_percentage',string='Percentage')
+    user_id = fields.Many2one('res.users','Related User')
+    parent_id = fields.Many2one('employe.employe','Manager')
+    child_ids = fields.One2many('employe.employe','parent_id', string='Subordinates')
+
 
 
 
