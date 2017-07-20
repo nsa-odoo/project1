@@ -13,6 +13,7 @@
 					<sheet>
 						<field name="image" widget="image" class="oe_avatar"/>
 
+
 						<h1>
 							<field name="name" string="Employee Name" placeholder="Employee's Name..."/>
 						</h1>
@@ -96,15 +97,19 @@
 			<field name="arch" type="xml">
 				<kanban>
 					<templates>
+						<field name="image"/>
 						<field name="name"/>
 						<field name="email"/>
-						<field name="dept_id"/>
 						<field name="website"/>
 						<t t-name="kanban-box">
 							<div t-attf-class="oe_kanban_card oe_kanban_global_click">
 								<table style="height:60px;width:320px">
 									<tr>
-
+										<td>
+											<a type="edit">
+												<img t-att-src="kanban_image('employe.employe', 'image', record.id.value)" class="oe_avatar oe_kanban_avatar_smallbox"/> 
+											</a>
+										</td>
 										<td>
 											<a type="open">
 												<field name="name"/>
@@ -115,7 +120,7 @@
 											</a>
 											<br/>
 											
-											<field name="website"/>
+											<field name="website"/>	
 										</td>
 									</tr>
 								</table>

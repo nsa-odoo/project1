@@ -4,18 +4,21 @@
     'description': "details of employee",
     'category': 'Employee',
     'website': 'https://www.odoo.com',
-    'depends' : ['base' , 'report'],
+    'depends' : ['base' , 'report','website'],
     'data': [
+        'data/website_data.xml',
         'security/emp_security.xml',
         'security/ir.model.access.csv',
+        'views/template.xml',
+        'views/template_view.xml',
         'views/employe_view.xml',
         'views/emp_report.xml',
         'views/hr_report.xml',
-        
+    ],
+    'demo': [
+        'data/hr_demo.xml',
     ],
     
-    'demo':['demo/hr_demo.xml',
-    ],
 
     'installable': True,
     'application': True,
