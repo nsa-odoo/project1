@@ -276,6 +276,7 @@
 				</tree>
 			</field>
 		</record>
+		
 
 		<!-- Action of Activity -->
 		<record id="action_emp_act" model="ir.actions.act_window">
@@ -287,6 +288,31 @@
 
 		<!-- Menu of Activity -->
 		<menuitem id="menu_emp_act" action="action_emp_act" parent="menu_hr_main" groups="employe_details.grp_rpt_mngr,employe_details.grp_hr_mngr" />
+
+
+
+
+	    <record id="employe_details_action" model="ir.actions.client">
+	        <field name="name">EmpList</field>
+	        <field name="tag">employe_details.main</field>
+
+	    </record>
+
+	    <menuitem name="EmpList" id="emp_details_menu" action="employe_details_action" parent="menu_hr_main" sequence="1" groups="employe_details.grp_rpt_mngr,employe_details.grp_hr_mngr"/>
+
+
+	    <!-- <record id="employe_details_department_action" model="ir.actions.client">
+	        <field name="name">Department</field>
+	        <field name="tag">employe_details.Department</field>
+
+	    </record>
+
+	    <menuitem name="EmpList" id="emp_details_menu" action="employe_details_department_action" parent="menu_hr_main" sequence="1" groups="employe_details.grp_rpt_mngr,employe_details.grp_hr_mngr"/>
+ -->
+
+	    
+
+
 	</data>
 
 </odoo>

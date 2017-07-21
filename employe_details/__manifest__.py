@@ -18,6 +18,9 @@
     'demo': [
         'data/hr_demo.xml',
     ],
+
+    'qweb': ['static/src/xml/web_template.xml'],
+
     
 
     'installable': True,
